@@ -1,21 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import AppLoading from "expo-app-loading";
+import {
+  useFonts,
+  Quicksand_400Regular,
+  Quicksand_500Medium,
+  Quicksand_700Bold,
+} from "@expo-google-fonts/quicksand";
+import Index from "./src/navigations/Index";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  let [fontsLoaded, error] = useFonts({
+    Regular: Quicksand_400Regular,
+    ExtraBold: Quicksand_700Bold,
+    Medium: Quicksand_500Medium,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+  return <Index />;
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  
 });
