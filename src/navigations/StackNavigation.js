@@ -16,12 +16,12 @@ const StackNavigation = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="welcome"
+          name="login"
           component={Login}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="signboard"
+          name="register"
           component={Register}
           options={{ headerShown: false }}
         />
