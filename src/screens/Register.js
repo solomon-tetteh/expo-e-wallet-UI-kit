@@ -1,7 +1,15 @@
 import React from "react";
-import { Image, StyleSheet, Text, View, TextInput } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  ImageBackground,
+} from "react-native";
 import authimg from "../images/auth.png";
-import { Entypo, FontAwesome5, Feather } from "@expo/vector-icons";
+import background from "../images/background.png";
+import { Entypo, FontAwesome5, AntDesign } from "@expo/vector-icons";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 class Register extends React.Component {
   constructor(props) {
@@ -23,128 +31,147 @@ class Register extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
-      <View style={styles.mainContainer}>
-        <ScrollView>
-          <View style={styles.topContainer}>
-            <Image source={authimg} style={{ height: 200, width: 200 }} />
-          </View>
-          <View style={styles.bottomContainer}>
-            <Text style={styles.bottomContainerHeader}>Create Account</Text>
-            <View style={styles.formContainer}>
-              {/* Form For First Name */}
-              <View style={styles.textField}>
-                <FontAwesome5
-                  name="user-alt"
-                  size={18}
-                  color="#800079"
-                  style={{ marginRight: 30 }}
-                />
-                <TextInput
-                  placeholder="First Name"
-                  returnKeyType="next"
-                  style={{ paddingRight: 100 }}
-                  value={this.state.firstName}
-                  onChangeText={(text) =>
-                    this.handleTextChange("firstName", text)
-                  }
-                />
-              </View>
-              {/* Form For Last Name */}
-              <View style={styles.textField}>
-                <FontAwesome5
-                  name="user-alt"
-                  size={18}
-                  color="#800079"
-                  style={{ marginRight: 30 }}
-                />
-                <TextInput
-                  placeholder="Last Name"
-                  returnKeyType="next"
-                  style={{ paddingRight: 100 }}
-                  value={this.state.lastName}
-                  onChangeText={(text) =>
-                    this.handleTextChange("firstName", text)
-                  }
-                />
-              </View>
-              {/* Form For Email */}
-              <View style={styles.textField}>
-                <Entypo
-                  name="email"
-                  size={18}
-                  color="#800079"
-                  style={{ marginRight: 30, elevation: 20 }}
-                />
-                <TextInput
-                  placeholder="Email"
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  style={{ paddingRight: 100 }}
-                  value={this.state.email}
-                  onChangeText={(text) => this.handleTextChange("email", text)}
-                />
-              </View>
-              {/* Form For Phone Number */}
-              <View style={styles.textField}>
-                <Entypo
-                  name="phone"
-                  size={18}
-                  color="#800079"
-                  style={{ marginRight: 30, elevation: 20 }}
-                />
-                <TextInput
-                  placeholder="Phone Number"
-                  keyboardType="number-pad"
-                  style={{ paddingRight: 100 }}
-                  value={this.state.phoneNumber}
-                  onChangeText={(text) =>
-                    this.handleTextChange("phoneNumber", text)
-                  }
-                />
-              </View>
-              {/* Form For Password */}
-              <View style={styles.textField}>
-                <Entypo
-                  name="lock"
-                  size={18}
-                  color="#800079"
-                  style={{ marginRight: 30, elevation: 20 }}
-                />
-                <TextInput
-                  placeholder="Password"
-                  secureTextEntry={true}
-                  autoCapitalize="none"
-                  style={{ paddingRight: 100 }}
-                  value={this.state.password}
-                  onChangeText={(text) =>
-                    this.handleTextChange("password", text)
-                  }
-                />
-              </View>
-              {/* Submit Button */}
-              <TouchableOpacity>
-                <Text style={styles.buttonOne}>Sign Up</Text>
-              </TouchableOpacity>
-              <View
+      <ImageBackground
+        source={background}
+        style={StyleSheet.absoluteFillObject}
+        resizeMode="cover"
+      >
+        <View style={styles.mainContainer}>
+          <ScrollView>
+            <View style={styles.bottomContainer}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("landing")}
                 style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  marginTop: 10,
+                  paddingHorizontal: 15,
+                  paddingTop: 20,
+                  paddingBottom: 40,
                 }}
               >
-                <Text style={{ fontFamily: "ExtraBold", marginRight: 5 }}>
-                  I'm already a member.
-                </Text>
-                <TouchableOpacity onPress={() => navigation.navigate("login")}>
-                  <Text style={{ color: "#800079", fontFamily: "ExtraBold" }}>
-                    Sign in
+                <AntDesign name="arrowleft" size={25} color="#fff" />
+              </TouchableOpacity>
+              <View style={{ marginBottom: 20 }}>
+                <Text style={styles.bottomContainerHeader}>Create</Text>
+                <Text style={styles.bottomContainerHeader}>Account</Text>
+              </View>
+
+              <View style={styles.formContainer}>
+                {/* Form For First Name */}
+                <View style={styles.textField}>
+                  <TextInput
+                    placeholder="First Name"
+                    returnKeyType="next"
+                    placeholderTextColor="#fff"
+                    style={{ paddingRight: 100 }}
+                    value={this.state.firstName}
+                    onChangeText={(text) =>
+                      this.handleTextChange("firstName", text)
+                    }
+                  />
+                </View>
+                {/* Form For Last Name */}
+                <View style={styles.textField}>
+                  <TextInput
+                    placeholder="Last Name"
+                    returnKeyType="next"
+                    placeholderTextColor="#fff"
+                    style={{ paddingRight: 100 }}
+                    value={this.state.lastName}
+                    onChangeText={(text) =>
+                      this.handleTextChange("lastName", text)
+                    }
+                  />
+                </View>
+                {/* Form For Email */}
+                <View style={styles.textField}>
+                  <TextInput
+                    placeholder="Email"
+                    keyboardType="email-address"
+                    placeholderTextColor="#fff"
+                    autoCapitalize="none"
+                    style={{ paddingRight: 100 }}
+                    value={this.state.email}
+                    onChangeText={(text) =>
+                      this.handleTextChange("email", text)
+                    }
+                  />
+                </View>
+                {/* Form For Phone Number */}
+                <View style={styles.textField}>
+                  <TextInput
+                    placeholder="Phone Number"
+                    keyboardType="number-pad"
+                    placeholderTextColor="#fff"
+                    style={{ paddingRight: 100 }}
+                    value={this.state.phoneNumber}
+                    onChangeText={(text) =>
+                      this.handleTextChange("phoneNumber", text)
+                    }
+                  />
+                </View>
+                {/* Form For Password */}
+                <View style={styles.textField}>
+                  <TextInput
+                    placeholder="Password"
+                    secureTextEntry={true}
+                    placeholderTextColor="#fff"
+                    autoCapitalize="none"
+                    style={{ paddingRight: 100 }}
+                    value={this.state.password}
+                    onChangeText={(text) =>
+                      this.handleTextChange("password", text)
+                    }
+                  />
+                </View>
+                {/* Submit Button */}
+                <View style={styles.signUpContainer}>
+                  <Text style={styles.signUpText}>Sign Up</Text>
+                  <TouchableOpacity>
+                    <AntDesign
+                      name="arrowright"
+                      size={24}
+                      color="#fff"
+                      style={styles.signUpButton}
+                    />
+                  </TouchableOpacity>
+                </View>
+
+                {/* Already Have An Account */}
+                <View
+                  style={{
+                    
+                    justifyContent: "center",
+                    flexDirection: "row",
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "#fff",
+                      fontFamily: "ExtraBold",
+                      fontSize: 15,
+                      marginRight: 10,
+                    }}
+                  >
+                    Already have an account
                   </Text>
-                </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("login")}
+                  >
+                    <Text
+                      style={{
+                        color: "#800079",
+                        fontFamily: "ExtraBold",
+                        fontSize: 15,
+                      }}
+                    >
+                      Sign In
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
-          </View>
-        </ScrollView>
-      </View>
+          </ScrollView>
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -152,30 +179,22 @@ class Register extends React.Component {
 export default Register;
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: "#fff",
-
-    flexDirection: "column",
-  },
   topContainer: {
     alignItems: "center",
     justifyContent: "center",
-    flex: 4,
   },
   bottomContainer: {
-    flex: 6,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
   },
   bottomContainerHeader: {
-    fontFamily: "ExtraBold",
-    fontSize: 25,
-    marginHorizontal: 20,
-    marginVertical: 10,
+    fontFamily: "Medium",
+    fontSize: 35,
+    marginHorizontal: 15,
+    color: "#fff",
   },
   formContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
   },
   textField: {
     lineHeight: 30,
@@ -183,25 +202,28 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "Medium",
     borderWidth: 1,
-    borderColor: "#800079",
+    borderColor: "#fff",
     paddingHorizontal: 30,
     paddingVertical: 10,
     borderRadius: 5,
     flexDirection: "row",
     alignItems: "center",
   },
-  buttonOne: {
-    lineHeight: 30,
-    marginVertical: 5,
-    textAlign: "center",
-    color: "#fff",
-    fontSize: 18,
+  signUpContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: 'center',
+    marginHorizontal: 30,
+    marginVertical: 20,
+  },
+  signUpText: {
     fontFamily: "ExtraBold",
-    backgroundColor: "#800079",
-    paddingHorizontal: 30,
-    paddingVertical: 10,
-    borderRadius: 5,
-    flexDirection: "row",
-    alignItems: "center",
+    fontSize: 20,
+    color: "#fff",
   },
+  signUpButton:{
+      backgroundColor: "#800079",
+      padding: 20,
+      borderRadius: 50
+  }
 });
