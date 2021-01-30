@@ -4,6 +4,7 @@ import LandingPage from "../screens/LandingPage";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import { createStackNavigator } from "@react-navigation/stack";
+import ForgotPassword from "../screens/ForgotPassword";
 
 const Stack = createStackNavigator();
 const StackNavigation = () => {
@@ -23,6 +24,11 @@ const StackNavigation = () => {
         <Stack.Screen
           name="register"
           component={Register}
+          options={{ headerShown: false }}
+        />
+         <Stack.Screen
+          name="forgotPwd"
+          component={ForgotPassword}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

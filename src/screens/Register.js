@@ -7,9 +7,8 @@ import {
   TextInput,
   ImageBackground,
 } from "react-native";
-import authimg from "../images/auth.png";
 import background from "../images/background.png";
-import { Entypo, FontAwesome5, AntDesign } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 class Register extends React.Component {
   constructor(props) {
@@ -124,23 +123,17 @@ class Register extends React.Component {
                 </View>
                 {/* Submit Button */}
                 <View style={styles.signUpContainer}>
-                  <Text style={styles.signUpText}>Sign Up</Text>
-                  <TouchableOpacity>
-                    <AntDesign
-                      name="arrowright"
-                      size={24}
-                      color="#fff"
-                      style={styles.signUpButton}
-                    />
+                <TouchableOpacity>
+                    <Text style={styles.signUpButton}>Sign Up</Text>
                   </TouchableOpacity>
                 </View>
 
                 {/* Already Have An Account */}
                 <View
                   style={{
-                    
                     justifyContent: "center",
                     flexDirection: "row",
+                    marginVertical: 10
                   }}
                 >
                   <Text
@@ -209,21 +202,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  signUpContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: 'center',
-    marginHorizontal: 30,
-    marginVertical: 20,
-  },
-  signUpText: {
+  signUpButton: {
+    backgroundColor: "#800079",
+    padding: 20,
+    borderRadius: 50,
+    lineHeight: 30,
+    marginVertical: 5,
+    fontSize: 18,
     fontFamily: "ExtraBold",
-    fontSize: 20,
     color: "#fff",
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    borderRadius: 5,
+    flexDirection: "row",
+    textAlign: "center",
   },
-  signUpButton:{
-      backgroundColor: "#800079",
-      padding: 20,
-      borderRadius: 50
-  }
 });

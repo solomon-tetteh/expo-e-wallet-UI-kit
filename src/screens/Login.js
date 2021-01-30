@@ -1,17 +1,21 @@
 import React from "react";
-import { Image, StyleSheet, Text, View, TextInput } from "react-native";
-import authimg from "../images/auth.png";
-import { Entypo, FontAwesome5, Feather } from "@expo/vector-icons";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  ImageBackground,
+} from "react-native";
+import background from "../images/background.png";
+import { AntDesign } from "@expo/vector-icons";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 class Login extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      firstName: "",
-      lastName: "",
       email: "",
-      phoneNumber: "",
       password: "",
     };
   }
@@ -23,75 +27,143 @@ class Login extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
-      <View style={styles.mainContainer}>
-        <ScrollView>
-          <View style={styles.topContainer}>
-            <Image source={authimg} style={{ height: 200, width: 200 }} />
-          </View>
-          <View style={styles.bottomContainer}>
-            <Text style={styles.bottomContainerHeader}>Sign In</Text>
-            <View style={styles.formContainer}>
-              {/* Form For Email */}
-              <View style={styles.textField}>
-                <Entypo
-                  name="email"
-                  size={18}
-                  color="#800079"
-                  style={{ marginRight: 30, elevation: 20 }}
-                />
-                <TextInput
-                  placeholder="Email"
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  style={{ paddingRight: 100 }}
-                  value={this.state.email}
-                  onChangeText={(text) => this.handleTextChange("email", text)}
-                />
-              </View>
-
-              {/* Form For Password */}
-              <View style={styles.textField}>
-                <Entypo
-                  name="lock"
-                  size={18}
-                  color="#800079"
-                  style={{ marginRight: 30, elevation: 20 }}
-                />
-                <TextInput
-                  placeholder="Password"
-                  secureTextEntry={true}
-                  autoCapitalize="none"
-                  style={{ paddingRight: 100 }}
-                  value={this.state.password}
-                  onChangeText={(text) =>
-                    this.handleTextChange("password", text)
-                  }
-                />
-              </View>
-              {/* Submit Button */}
-              <TouchableOpacity>
-                <Text style={styles.buttonOne}>Sign In</Text>
-              </TouchableOpacity>
-              <View
+      <ImageBackground
+        source={background}
+        style={StyleSheet.absoluteFillObject}
+        resizeMode="cover"
+      >
+        <View style={styles.mainContainer}>
+          <ScrollView>
+            <View style={styles.bottomContainer}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("landing")}
                 style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  marginTop: 10,
+                  paddingHorizontal: 15,
+                  paddingTop: 20,
+                  paddingBottom: 30,
                 }}
               >
-                <Text style={{ fontFamily: "ExtraBold", marginRight: 5 }}>
-                  Don't have an account?
-                </Text>
-                <TouchableOpacity onPress={() => navigation.navigate("login")}>
-                  <Text style={{ color: "#800079", fontFamily: "ExtraBold" }}>
-                    Sign Up
+                <AntDesign name="arrowleft" size={25} color="#fff" />
+              </TouchableOpacity>
+              <View style={{ marginBottom: 50 }}>
+                <Text style={styles.bottomContainerHeader}>Welcome</Text>
+                <Text style={styles.bottomContainerHeader}>Back</Text>
+              </View>
+
+              <View style={styles.formContainer}>
+                {/* Form For Email */}
+                <View style={styles.textField}>
+                  <TextInput
+                    placeholder="Email"
+                    keyboardType="email-address"
+                    placeholderTextColor="#fff"
+                    autoCapitalize="none"
+                    style={{ paddingRight: 100 }}
+                    value={this.state.email}
+                    onChangeText={(text) =>
+                      this.handleTextChange("email", text)
+                    }
+                  />
+                </View>
+
+                {/* Form For Password */}
+                <View style={styles.textField}>
+                  <TextInput
+                    placeholder="Password"
+                    secureTextEntry={true}
+                    placeholderTextColor="#fff"
+                    autoCapitalize="none"
+                    style={{ paddingRight: 100 }}
+                    value={this.state.password}
+                    onChangeText={(text) =>
+                      this.handleTextChange("password", text)
+                    }
+                  />
+                </View>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("forgotPwd")}
+                >
+                  <Text style={styles.forgotPwd}>Forgot Password?</Text>
+                </TouchableOpacity>
+
+                {/* Submit Button */}
+                <View style={styles.signUpContainer}>
+                  <TouchableOpacity>
+                    <Text style={styles.signUpButton}>Sign In</Text>
+                  </TouchableOpacity>
+                </View>
+
+                {/* Already Have An Account */}
+                <View
+                  style={{
+                    justifyContent: "center",
+                    flexDirection: "row",
+                    borderBottomColor: "#fff",
+                    borderBottomWidth: 0.2,
+                    paddingBottom: 10,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "#fff",
+                      fontFamily: "ExtraBold",
+                      fontSize: 15,
+                      marginRight: 10,
+                    }}
+                  >
+                    Don't have an account?
                   </Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("register")}
+                  >
+                    <Text
+                      style={{
+                        color: "#800079",
+                        fontFamily: "ExtraBold",
+                        fontSize: 15,
+                        borderBottomColor: "#800079",
+                        borderBottomWidth: 1,
+                      }}
+                    >
+                      Sign Up
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+                {/* Other Logins */}
+                <Text
+                  style={{
+                    color: "#fff",
+                    fontFamily: "ExtraBold",
+                    textAlign: "center",
+                    marginVertical: 10
+                  }}
+                >
+                  OR
+                </Text>
+                <TouchableOpacity style={styles.google}>
+                  <AntDesign
+                    name="google"
+                    size={24}
+                    color="#fff"
+                    style={{ marginRight: 10 }}
+                  />
+                  <Text style={styles.googleText}>Sign In With Google</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.apple}>
+                  <AntDesign
+                    name="apple1"
+                    size={24}
+                    color="#fff"
+                    style={{ marginRight: 10 }}
+                  />
+                  <Text style={styles.appleText}>Sign In With Apple</Text>
                 </TouchableOpacity>
               </View>
             </View>
-          </View>
-        </ScrollView>
-      </View>
+          </ScrollView>
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -99,30 +171,28 @@ class Login extends React.Component {
 export default Login;
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: "#fff",
-
-    flexDirection: "column",
-  },
   topContainer: {
     alignItems: "center",
     justifyContent: "center",
-    flex: 4,
   },
   bottomContainer: {
-    flex: 6,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
   },
   bottomContainerHeader: {
+    fontFamily: "Medium",
+    fontSize: 35,
+    marginHorizontal: 15,
+    color: "#fff",
+  },
+  forgotPwd: {
     fontFamily: "ExtraBold",
-    fontSize: 25,
-    marginHorizontal: 20,
-    marginVertical: 10,
+    fontSize: 15,
+    color: "#fff",
+    alignSelf: "flex-end",
   },
   formContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
   },
   textField: {
     lineHeight: 30,
@@ -130,25 +200,61 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "Medium",
     borderWidth: 1,
-    borderColor: "#800079",
+    borderColor: "#fff",
     paddingHorizontal: 30,
     paddingVertical: 10,
     borderRadius: 5,
     flexDirection: "row",
     alignItems: "center",
   },
-  buttonOne: {
+
+  signUpButton: {
+    backgroundColor: "#800079",
+    padding: 20,
+    borderRadius: 50,
     lineHeight: 30,
     marginVertical: 5,
-    textAlign: "center",
-    color: "#fff",
     fontSize: 18,
     fontFamily: "ExtraBold",
-    backgroundColor: "#800079",
+    color: "#fff",
     paddingHorizontal: 30,
     paddingVertical: 10,
     borderRadius: 5,
     flexDirection: "row",
+    textAlign: "center",
+  },
+  google: {
+    lineHeight: 50,
+    marginVertical: 10,
+
+    paddingHorizontal: 30,
+    paddingVertical: 15,
+    borderRadius: 5,
+    flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "red",
+  },
+  googleText: {
+    fontSize: 18,
+    fontFamily: "ExtraBold",
+    color: "#fff",
+  },
+  apple: {
+    lineHeight: 50,
+    marginVertical: 5,
+
+    paddingHorizontal: 30,
+    paddingVertical: 15,
+    borderRadius: 5,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "black",
+  },
+  appleText: {
+    fontSize: 18,
+    fontFamily: "ExtraBold",
+    color: "#fff",
   },
 });
